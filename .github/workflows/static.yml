@@ -36,8 +36,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # Upload entire repository
-          path: '.'
+        path: storybook-static
+        build_command: npm run build-storybook
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2
