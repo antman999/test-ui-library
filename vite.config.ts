@@ -3,6 +3,8 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import tsConfigPaths from "vite-tsconfig-paths";
+import {createStyleImportPlugin} from 'vite-plugin-style-import';
+
 import * as packageJson from "./package.json";
 
 export default defineConfig(() => ({
@@ -12,14 +14,22 @@ export default defineConfig(() => ({
     dts({
       include: ["src"],
     }),
+    createStyleImportPlugin({
+      libs: [
+        {
+          libraryName: 'meridian-ui',
+          resolveStyle: (name) => `src/components/${name}/${name}.css`,
+        },
+      ],
+    }),
   ],
   build: {
     lib: {
       entry: resolve("src", "index.ts"),
-      name: "react-component-library",
+      name: "meridian-ui",
       formats: ["es", "cjs"],
       fileName: (format) =>
-        `react-component-library.${
+        `meridian-ui.${
           format === "cjs" ? "cjs" : "es.js"
         }`,
     },
