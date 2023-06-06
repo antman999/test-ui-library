@@ -18,7 +18,7 @@ export default defineConfig(() => ({
       libs: [
         {
           libraryName: 'meridian-ui',
-          resolveStyle: (name) => `src/components/${name}/${name}.css`,
+          resolveStyle: (name) => `./src/components/${name}/${name}.css`,
         },
       ],
     }),
@@ -32,6 +32,11 @@ export default defineConfig(() => ({
         `meridian-ui.${
           format === "cjs" ? "cjs" : "es.js"
         }`,
+    },
+    rollupOptions: {
+      output: {
+        inlineDynamicImports: true, // Inline dynamic imports (including CSS) into the component file
+      },
     },
     optimizeDeps: {
       exclude: Object.keys(packageJson.peerDependencies),
