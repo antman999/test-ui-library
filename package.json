@@ -1,6 +1,6 @@
 {
   "name": "meridian-ui",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Flexible UI components",
   "license": "MIT",
   "author": {
@@ -13,8 +13,18 @@
   },
   "homepage": "antman999.github.io/meridian-ui/",
   "type": "module",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/react-component-library.cjs",
+      "import": "./dist/react-component-library.es.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsc",
+    "build": "vite build && npm run build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "version": "node -e \"const semver = require('semver'); const package = require('./package.json'); const newVersion = semver.inc(package.version, 'patch'); package.version = newVersion; require('fs').writeFileSync('./package.json', JSON.stringify(package, null, 2)); console.log('Version updated to', newVersion);\"",
@@ -31,7 +41,9 @@
     "rollup": "^3.23.1",
     "rollup-plugin-dts": "^5.3.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-postcss": "^4.0.2"
+    "rollup-plugin-postcss": "^4.0.2",
+    "vite-plugin-dts": "^2.3.0",
+    "vite-tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.18",
@@ -55,5 +67,9 @@
     "storybook": "^7.0.18",
     "typescript": "^5.0.2",
     "vite": "^4.3.9"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
