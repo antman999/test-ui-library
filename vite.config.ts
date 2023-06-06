@@ -3,7 +3,7 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 import tsConfigPaths from "vite-tsconfig-paths";
-import {createStyleImportPlugin} from 'vite-plugin-style-import';
+import { createStyleImportPlugin } from 'vite-plugin-style-import';
 
 import * as packageJson from "./package.json";
 
